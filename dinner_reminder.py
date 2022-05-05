@@ -39,7 +39,7 @@ def main():
         if cur_time.hour == 12 and cur_time.minute == 45:
             text = "午饭时间到！"
             async_notify_feishu(text=text, title=title)
-        if cur_time.hour == 6 and cur_time.minute == 45:
+        if cur_time.hour == 18 and cur_time.minute == 45:
             text = "晚饭时间到！"
             async_notify_feishu(text=text, title=title)
         print(f"Current Time: {cur_time}")
