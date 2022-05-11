@@ -12,15 +12,7 @@ import config
 
 FEISHU_BOT_URL = config.FEISHU_BOT_URL
 WAIT_SEC = config.WAIT_SEC
-RESTARANT_SELECTION = [
-    "津味园",
-    "秦汉源",
-    "汉堡王",
-    "麦当劳",
-    "老乡鸡",
-    "草本汤",
-    "猪角饭"
-]
+RESTAURANT_SELECTION = config.RESTAURANT_SELECTION
 
 
 def async_execute(daemon=True):
@@ -56,7 +48,7 @@ def get_args():
 
 def main():
     args = get_args()
-    
+
     if args.delivery:
         lunch_time = (11, 45)
         dinner_time = (18, 0)
@@ -65,8 +57,8 @@ def main():
     else:
         lunch_time = (12, 45)
         dinner_time = (19, 0)
-        lunch_text = "午饭时间到！\n推荐餐厅：" + random.choice(RESTARANT_SELECTION)
-        dinner_text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTARANT_SELECTION)
+        lunch_text = "午饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
+        dinner_text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
     title = "干饭提醒🍔"
     
     while True:
