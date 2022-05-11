@@ -56,16 +56,25 @@ def get_args():
 
 def main():
     args = get_args()
+    
+    if args.delivery:
+        lunch_time = (11, 45)
+        dinner_time = (18, 0)
+        lunch_text = "午饭时间到！\n天气恶劣，记得点外卖！"
+        dinner_text = "晚饭时间到！\n天气恶劣，记得点外卖！"
+    else:
+        lunch_time = (12, 45)
+        dinner_time = (19, 0)
+        lunch_text = "午饭时间到！\n推荐餐厅：" + random.choice(RESTARANT_SELECTION)
+        dinner_text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTARANT_SELECTION)
+    title = "干饭提醒🍔"
+    
     while True:
         cur_time = datetime.now()
-        title = "干饭提醒🍔"
-        print(args.delivery)
-        if cur_time.hour == 12 and cur_time.minute == 45:
-            text = "午饭时间到！\n推荐餐厅：" + random.choice(RESTARANT_SELECTION)
-            async_notify_feishu(text=text, title=title)
-        if cur_time.hour == 19 and cur_time.minute == 0:
-            text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTARANT_SELECTION)
-            async_notify_feishu(text=text, title=title)
+        if cur_time.hour == lunch_time[0] and cur_time.minute == lunch_time[1]:
+            async_notify_feishu(text=lunch_text, title=title)
+        if cur_time.hour == dinner_time[0] and cur_time.minute == dinner_time[1]:
+            async_notify_feishu(text=dinner_text, title=title)
         print(f"Current Time: {cur_time}")
         time.sleep(WAIT_SEC)
 
