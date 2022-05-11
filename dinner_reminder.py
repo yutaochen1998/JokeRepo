@@ -3,6 +3,7 @@ from datetime import datetime
 import threading
 from functools import wraps
 import random
+from argparse import ArgumentParser
 
 import requests
 
@@ -45,10 +46,20 @@ def async_notify_feishu(text, title=""):
         print(e)
 
 
+def get_args():
+    parser = ArgumentParser()
+    parser.add_argument("--delivery", action="store_true", help="Whether to order delivery at dinner time.")
+    parser.set_defaults(delivery=False)
+    args = parser.parse_args()
+    return args
+
+
 def main():
+    args = get_args()
     while True:
         cur_time = datetime.now()
         title = "干饭提醒🍔"
+        print(args.delivery)
         if cur_time.hour == 12 and cur_time.minute == 45:
             text = "午饭时间到！\n推荐餐厅：" + random.choice(RESTARANT_SELECTION)
             async_notify_feishu(text=text, title=title)
