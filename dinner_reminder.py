@@ -52,13 +52,17 @@ def main():
     if args.delivery:
         lunch_time = (11, 45)
         dinner_time = (18, 0)
+        snack_time = (15, 17)
         lunch_text = "午饭时间到！\n天气恶劣，记得点外卖！"
         dinner_text = "晚饭时间到！\n天气恶劣，记得点外卖！"
+        snack_text = "零食时间到！\n天气恶劣，记得点外卖！"
+
     else:
         lunch_time = (12, 45)
         dinner_time = (19, 0)
         lunch_text = "午饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
         dinner_text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
+        snack_text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
     title = "干饭提醒🍔"
     
     while True:
@@ -67,6 +71,8 @@ def main():
             async_notify_feishu(text=lunch_text, title=title)
         if cur_time.hour == dinner_time[0] and cur_time.minute == dinner_time[1]:
             async_notify_feishu(text=dinner_text, title=title)
+        if cur_time.hour == snack_time[0] and cur_time.minute == snack_time[1]:
+            async_notify_feishu(text=snack_text, title=title)
         print(f"Current Time: {cur_time}")
         time.sleep(WAIT_SEC)
 
