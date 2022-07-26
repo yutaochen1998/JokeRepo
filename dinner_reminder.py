@@ -62,7 +62,7 @@ def main():
         dinner_time = (19, 0)
         lunch_text = "午饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
         dinner_text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
-        snack_text = "晚饭时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
+        snack_text = "零食时间到！\n推荐餐厅：" + random.choice(RESTAURANT_SELECTION)
     title = "干饭提醒🍔"
     
     while True:
